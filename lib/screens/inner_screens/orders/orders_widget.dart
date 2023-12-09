@@ -4,6 +4,7 @@ import '../../../consts/app_constants.dart';
 import '../../../widgets/subtitle_text.dart';
 import '../../../widgets/title_text.dart';
 
+// Widget to display orders for Free users
 class OrdersWidgetFree extends StatefulWidget {
   const OrdersWidgetFree({super.key});
 
@@ -12,14 +13,19 @@ class OrdersWidgetFree extends StatefulWidget {
 }
 
 class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
+  // Flag to check if the image is loading
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
+    // Get the screen size
     final size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: Row(
         children: [
+          // Display a shimmering image placeholder
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: FancyShimmerImage(
@@ -34,6 +40,7 @@ class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Display product title and clear icon
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -45,14 +52,16 @@ class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.clear,
-                            color: Colors.red,
-                            size: 22,
-                          )),
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.clear,
+                          color: Colors.red,
+                          size: 22,
+                        ),
+                      ),
                     ],
                   ),
+                  // Display product price and quantity
                   const Row(
                     children: [
                       TitlesTextWidget(
@@ -71,26 +80,11 @@ class _OrdersWidgetFreeState extends State<OrdersWidgetFree> {
                   const SizedBox(
                     height: 5,
                   ),
+                  // Display product quantity
                   const SubtitleTextWidget(
                     label: "Qty: 10",
                     fontSize: 15,
                   ),
-                  // const Row(
-                  //   children: [
-                  //     Flexible(
-                  //       child: TitlesTextWidget(
-                  //         label: 'Qty:  ',
-                  //         fontSize: 15,
-                  //       ),
-                  //     ),
-                  //     Flexible(
-                  //       child: SubtitleTextWidget(
-                  //         label: "10",
-                  //         fontSize: 15,
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                   const SizedBox(
                     height: 5,
                   ),

@@ -3,11 +3,17 @@ import 'package:shimmer/shimmer.dart';
 
 import 'title_text.dart';
 
+/// Widget for displaying the application name with a shimmer effect.
 class AppNameTextWidget extends StatelessWidget {
-  const AppNameTextWidget({super.key, this.fontSize = 30});
+  /// Default constructor for [AppNameTextWidget].
+  const AppNameTextWidget({Key? key, this.fontSize = 30}) : super(key: key);
+
+  /// Font size for the application name text.
   final double fontSize;
+
   @override
   Widget build(BuildContext context) {
+    // Shimmer effect for a dynamic and animated color transition.
     return Shimmer.fromColors(
       period: const Duration(seconds: 16),
       baseColor: Colors.purple,

@@ -3,14 +3,25 @@ import 'package:flutter/material.dart';
 import 'subtitle_text.dart';
 import 'title_text.dart';
 
+/// Widget for displaying an empty bag message.
 class EmptyBagWidget extends StatelessWidget {
+  /// Default constructor for [EmptyBagWidget].
   const EmptyBagWidget({
-    super.key,
+    Key? key,
     required this.imagePath,
     required this.title,
     required this.subtitle,
-  });
-  final String imagePath, title, subtitle;
+  }) : super(key: key);
+
+  /// Image path for the empty bag illustration.
+  final String imagePath;
+
+  /// Title of the empty bag message.
+  final String title;
+
+  /// Subtitle of the empty bag message.
+  final String subtitle;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

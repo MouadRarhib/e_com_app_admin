@@ -1,3 +1,4 @@
+import 'package:e_com_app_admin/firebase_options.dart';
 import 'package:e_com_app_admin/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -7,46 +8,61 @@ import 'providers/theme_provider.dart';
 import 'screens/edit_upload_product_form.dart';
 import 'screens/inner_screens/orders/orders_screen.dart';
 import 'screens/search_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize Firebase
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // Run the app
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // final themeProvider = Provider.of<ThemeProvider>(context);
     return MultiProvider(
       providers: [
+        // Provider for managing the app's theme
         ChangeNotifierProvider(
           create: (_) => ThemeProvider(),
         ),
+        // Provider for managing product data
         ChangeNotifierProvider(
           create: (_) => ProductProvider(),
         ),
       ],
-      child: Consumer<ThemeProvider>(builder: (
-        context,
-        themeProvider,
-        child,
-      ) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Shop Smart ADMIN AR',
-          theme: Styles.themeData(
-              isDarkTheme: themeProvider.getIsDarkTheme, context: context),
-          home: const DashboardScreen(),
-          routes: {
-            OrdersScreenFree.routeName: (context) => const OrdersScreenFree(),
-            SearchScreen.routeName: (context) => const SearchScreen(),
-            EditOrUploadProductScreen.routeName: (context) =>
-                const EditOrUploadProductScreen(),
-          },
-        );
-      }),
+      child: Consumer<ThemeProvider>(
+        builder: (
+          context,
+          themeProvider,
+          child,
+        ) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Shop Smart ADMIN AR',
+            // Set the app's theme based on the user's preference
+            theme: Styles.themeData(
+              isDarkTheme: themeProvider.getIsDarkTheme,
+              context: context,
+            ),
+            home: const DashboardScreen(),
+            // Define named routes for navigation
+            routes: {
+              OrdersScreenFree.routeName: (context) => const OrdersScreenFree(),
+              SearchScreen.routeName: (context) => const SearchScreen(),
+              EditOrUploadProductScreen.routeName: (context) =>
+                  const EditOrUploadProductScreen(),
+            },
+          );
+        },
+      ),
     );
   }
 }

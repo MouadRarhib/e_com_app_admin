@@ -3,10 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+/// Widget for picking and displaying an image.
 class PickImageWidget extends StatelessWidget {
-  const PickImageWidget({super.key, this.pickedImage, required this.function});
+  /// Default constructor for [PickImageWidget].
+  const PickImageWidget({
+    Key? key,
+    this.pickedImage,
+    required this.function,
+  }) : super(key: key);
+
+  /// The picked image file.
   final XFile? pickedImage;
+
+  /// Callback function for image picking.
   final Function function;
+
   @override
   Widget build(BuildContext context) {
     return Stack(

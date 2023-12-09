@@ -1,15 +1,25 @@
-import 'package:e_com_app_admin/widgets/subtitle_text.dart';
 import 'package:flutter/material.dart';
+import 'package:e_com_app_admin/widgets/subtitle_text.dart';
 
+/// Widget for displaying dashboard buttons.
 class DashboardButtonsWidget extends StatelessWidget {
-  const DashboardButtonsWidget(
-      {super.key,
-      required this.title,
-      required this.imagePath,
-      required this.onPressed});
+  /// Default constructor for [DashboardButtonsWidget].
+  const DashboardButtonsWidget({
+    Key? key,
+    required this.title,
+    required this.imagePath,
+    required this.onPressed,
+  }) : super(key: key);
 
-  final String title, imagePath;
+  /// Title of the dashboard button.
+  final String title;
+
+  /// Image path for the dashboard button.
+  final String imagePath;
+
+  /// Callback function to be executed when the button is pressed.
   final Function onPressed;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
